@@ -1,121 +1,144 @@
-import 'package:flutter/material.dart';
-void main() => runApp(HomePage());
 
-class HomePage extends StatelessWidget {
-   HomePage({
+
+import 'package:flutter/material.dart';
+// import 'package:tarea1/main.dart';
+
+class HomePage extends StatefulWidget {
+  HomePage({
     Key? key,
   }) : super(key: key);
 
-  int likes_counter = 0;
-  MaterialColor likes_color = Colors.grey;
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+
+
+}
+
+class _HomePageState extends State<HomePage> {
+  bool btn_persona = false;
+  bool btn_timer = false;
+  bool btn_tel1 = false;
+  bool btn_tel2 = false;
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Material App Bar'),
+        title: const Text('Mc Flutter'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 12, right: 12),
-        child: Column(
+      body: Container(
+          padding: const EdgeInsets.all(20),
+          margin: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.black,
+              width: 2,
+            )
+          ),
+          child: Column (
+            mainAxisSize: MainAxisSize.min,
           children: [
-            Image.network(
-                "https://www.cisco.com/c/es_mx/about/case-studies-customer-success-stories/iteso/jcr:content/Grid/category_atl_26d4/layout-category-atl/marquee_inpage_505b.img.jpg/1651747308061.jpg"),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Icon(Icons.account_circle, size: 48),
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "El ITESO, Universidad Jesuita de Guadalajara",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
-                      ),
-                    ),
-                    Text(
-                      "San Pedro Tlaquepaque, Jal.",
-                      style: TextStyle(color: Colors.grey[500], fontSize: 11),
-                    ),
+                  children: const [
+                    Text("Flutter McFlutter", style: TextStyle (fontSize: 23),),
+                    Text("Experienced App Developer")
                   ],
-                ),
-                Expanded(child: Container()),
-                IconButton(
-                    onPressed: () {
-                      print(likes_counter);
-                     if (likes_counter < 999) likes_counter++;
-                      likes_color = Colors.blue;
-                    },
-                    iconSize: 25,
-                    icon: Icon(
-                      Icons.thumb_up,
-                      color: likes_color
-                    )),
-                Text("$likes_counter"),
+                )
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    children: [
-                      IconButton(
-                        iconSize: 48,
-                        icon: const Icon(Icons.mail),
-                        onPressed: () {
-                          ScaffoldMessenger.of(context)
-                            ..hideCurrentSnackBar()
-                            ..showSnackBar(const SnackBar(
-                              content: Text("Enviando correo..."),
-                            ));
-                        },
-                      ),
-                      const Text("Correo"),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      IconButton(
-                        iconSize: 48,
-                        icon: const Icon(Icons.add_call),
-                        onPressed: () {
-                          ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(const SnackBar(
-                            content: Text("Hacer llamada"),
-                          ));
-                        },
-                      ),
-                      const Text("Llamar"),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      IconButton(
-                        iconSize: 48,
-                        icon: const Icon(Icons.directions),
-                        onPressed: () {
-                          ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(const SnackBar(
-                            content: Text("Ir al ITESO"),
-                          ));
-                        },
-                      ),
-                      const Text("Ruta"),
-                    ],
-                  ),
-                ],
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text("123 Main Street"),
+                Text("(415) 555-0198"),
+              ],
             ),
-            const Text(
-              "El ITESO, Universidad Jesuita de Guadalajara (Instituto Tecnológico y de Estudios Superiores de Occidente), es ina universidad privada ubicada en la Zona Metropolitana de Guadalajara, Jalisco, México, fundada en el año de 1957.",
-              textAlign: TextAlign.justify,
-            ),
+            Row (
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.accessibility),
+                  color: btn_persona ? Colors.indigo : Colors.black,
+                  onPressed: () {
+                    if (btn_persona == false) {
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(const SnackBar(
+                          content: Text("Únete a un club con otras personas"),
+                        )
+                          
+                      );
+                    }
+                    setState(() {
+                      btn_persona = !btn_persona;
+                    });
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(Icons.timer),
+                  color: btn_timer ? Colors.indigo : Colors.black,
+                  onPressed: () {
+                    if (btn_timer == false) {
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(const SnackBar(
+                          content: Text("Cuenta regresiva para el evento: 31 días"),
+                        )
+                          
+                      );
+                    }
+                    setState(() {
+                      btn_timer = !btn_timer;
+                    });
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(Icons.phone_android),
+                  color: btn_tel1 ? Colors.indigo : Colors.black,
+                  onPressed: () {
+                    if (btn_tel1 == false) {
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(const SnackBar(
+                          content: Text("Llama al número 4155550198"),
+                        )
+                          
+                      );
+                    }
+                    setState(() {
+                      btn_tel1 = !btn_tel1;
+                    });
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(Icons.phone_android),
+                  color: btn_tel2 ? Colors.indigo : Colors.black,
+                  onPressed: () {
+                    if (btn_tel2 == false) {
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(const SnackBar(
+                          content: Text("Llama al celular 3317865113"),
+                        )
+                          
+                      );
+                    }
+                    setState(() {
+                      btn_tel2 = !btn_tel2;
+                    });
+                  },
+                ),
+              ],
+            )
           ],
         ),
-      ),
+      )
     );
   }
 }
