@@ -1,2 +1,2 @@
-# PDM_O2022
-Programación de Dispositivos Móviles Otoño 2022
+# Practica 1
+Fecha de entrega 1 de octubre de 2022.
