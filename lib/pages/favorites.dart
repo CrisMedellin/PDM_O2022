@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:musicfindapp/providers/favorites_provider.dart';
+import 'package:provider/provider.dart';
 
 class Favorites extends StatelessWidget {
   const Favorites({
@@ -7,12 +9,21 @@ class Favorites extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final fav = Provider.of<FavoritesProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Favorites'),
       ),
-      body: const Center(
-        child: Text('Aún no hay favoritos.'),
+      body: ListView.builder(
+        itemCount:  fav.favList.length,
+        itemBuilder: (BuildContext context, int index) {
+          var _itemUser = fav.favList[index];
+          return ListTile(
+            title: Text("${_itemUser["title"]}"),
+          );
+        }
       ),
     );
   }
